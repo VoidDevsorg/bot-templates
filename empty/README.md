@@ -1,10 +1,10 @@
-# @botcreator/empty
+# @voiddevs.org/slashbot
 
 ### Usage
 
 ```js
 const { Intents } = require("discord.js");
-const Client = require('@botcreator/empty');
+const Client = require('@voiddevs.org/slashbot');
 
 const $ = new Client({ 
     token: process.env.token,
