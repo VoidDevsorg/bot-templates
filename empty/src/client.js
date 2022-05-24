@@ -9,7 +9,7 @@ module.exports = class ClquClient {
     /**
      * 
      * @param {string} token
-     * @param {object} fields
+     * @param {array} intents
      * 
      */
     constructor({ token, intents }) {
