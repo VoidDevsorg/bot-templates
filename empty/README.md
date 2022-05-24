@@ -40,6 +40,4 @@ $.setCommand({
 });
 
 $.init();
-
-module.exports = $;
 ```
