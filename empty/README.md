@@ -4,7 +4,7 @@
 
 ```js
 const { Intents } = require("discord.js");
-const Client = require('../');
+const Client = require('@botcreator/empty');
 
 const $ = new Client({ 
     token: process.env.token,
