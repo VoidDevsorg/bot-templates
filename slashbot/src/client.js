@@ -9,12 +9,14 @@ module.exports = class ClquClient {
     /**
      * 
      * @param {string} token
-     * @param {object} fields
+     * @param {array} intents
      * 
      */
     constructor({ token, intents }) {
         if (!token || typeof token !== "string")
             throw new Error(`${moduleConfig.prefix}: [TOKEN_INVALID]: An invalid token was provided.`);
+        if (!intents || typeof intents !== "array")
+            throw new Error(`${moduleConfig.prefix}: [INTENTS_INVALID]: An invalid intents was provided.`);
         this.token = token;
         this.commands = [];
         this.client = new Client({
