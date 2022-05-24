@@ -1,0 +1,24 @@
+{
+  "name": "@botcreator/empty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test/client.test.js"
+  },
+  "keywords": [],
+  "authors": [
+    "clqu <me@clqu.live>",
+    "Void Development <root@voiddevs.org>"
+  ],
+  "license": "MIT",
+  "repository": {
+    "directory": "https://github.com/VoidDevsorg/botcreator/tree/main/empty",
+    "url": "https://github.com/VoidDevsorg/botcreator/tree/main/empty"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^0.4.1",
+    "discord-api-types": "^0.33.0",
+    "discord.js": "^13.7.0",
+    "dotenv": "^16.0.1"
+}
