@@ -2,15 +2,9 @@ const { Client, Intents, Message, MessageEmbed } = require("discord.js");
 const moduleConfig = require('../module.config.json');
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
-const $client = new Client({
-    intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MEMBERS,
-        Intents.FLAGS.GUILD_MESSAGES
-    ]
-});
 
-module.exports.client = $client;
+module.exports.client = this.client;
+
 module.exports = class ClquClient {
     /**
      * 
@@ -18,12 +12,14 @@ module.exports = class ClquClient {
      * @param {object} fields
      * 
      */
-    constructor({ token, prefix }) {
+    constructor({ token, intents }) {
         if (!token || typeof token !== "string")
             throw new Error(`${moduleConfig.prefix}: [TOKEN_INVALID]: An invalid token was provided.`);
         this.token = token;
         this.commands = [];
-        this.client = $client;
+        this.client = new Client({
+            intents: intents
+        });;
         global.config = this;
         return this;
     }
@@ -72,14 +68,14 @@ module.exports = class ClquClient {
         this.client.login(this.token);
     }
 
-    setCommand({ name, description, run, admin }) {
+    setCommand({ name, description, run, options }) {
         if (/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(name))
             throw new Error(`${moduleConfig.prefix}: Command name is invalid. (${name})`);
         this.commands.push({
             name: name?.toLowerCase() ?? "invalidname",
             description: description ?? "n/a description",
-            run: run ?? "message.reply('run function is empty')",
-            admin: admin ?? false
+            run: run ?? "interaction.reply('run function is empty')",
+            options: options ?? []
         });
     }
 }
