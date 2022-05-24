@@ -26,18 +26,6 @@ module.exports = class ClquClient {
 
     init() {
 
-        function $(label) {
-            if (this?.fields[label]) {
-                return this.fields[label];
-            } else if (moduleConfig.fields[label]) {
-                return moduleConfig.fields[label];
-            } else {
-                return label;
-            }
-        };
-
-        //------------------------------------------------------------------------------------//
-
         const rest = new REST({ version: "9" }).setToken(this.token);
         this.client.on("ready", () => {
             (async () => {
@@ -50,8 +38,6 @@ module.exports = class ClquClient {
             })();
         });
 
-        // =================================================================================== \\
-
         this.client.on("interactionCreate", async (interaction) => {
             if (!interaction.isCommand()) return;
             let $command = this.commands.find(e => e.name === interaction.commandName);
@@ -59,7 +45,6 @@ module.exports = class ClquClient {
                 $command.run(this.client, interaction)
             }
         });
-        //------------------------------------------------------------------------------------//
 
         this.client.on('ready', () => {
             console.log(`${moduleConfig.prefix}: Logged as a ${this.client.user.username}#${this.client.user.discriminator}`)
