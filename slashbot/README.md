@@ -1,4 +1,8 @@
-# @voiddevs.org/slashbot
+# [@voiddevs.org/slashbot](https://npmjs.com/package/@voiddevs.org/slashbot)
+[Do you need my help? Visit our Discord server.](https://voiddevs.org/discord)
+
+![NPM Downloads](https://img.shields.io/npm/dm/@voiddevs.org/slashbot?style=for-the-badge)
+![License](https://img.shields.io/npm/l/@voiddevs.org/slashbot?style=for-the-badge)
 
 ### Usage
 
