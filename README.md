@@ -39,7 +39,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- PACKAGES -->
 ## Packages
 
-- [x] [Empty Slash Bot](https://npmjs.com/package/@voiddevs.org/slashbot)
+- [x] [Slash Bot](https://npmjs.com/package/@voiddevs.org/slashbot)
 - [ ] [Guardian Bot](https://npmjs.com/package/@voiddevs.org/guardianbot)
 - [ ] [Moderation Bot](https://npmjs.com/package/@voiddevs.org/modeartionbot)
 - [ ] [Music Bot](https://npmjs.com/package/@voiddevs.org/musicbot)
