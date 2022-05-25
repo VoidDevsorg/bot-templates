@@ -4,6 +4,13 @@
 ![NPM Downloads](https://img.shields.io/npm/dm/@voiddevs.org/slashbot?style=for-the-badge)
 ![License](https://img.shields.io/npm/l/@voiddevs.org/slashbot?style=for-the-badge)
 
+### Installation
+```bash
+npm i "@voiddevs.org/slashbot" --save
+# or
+yarn add "@voiddevs.org/slashbot"
+```
+
 ### Usage
 
 ```js
