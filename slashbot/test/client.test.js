@@ -13,7 +13,10 @@ const $ = new Client({
 });
 
 $.client.on('ready', () => {
-    console.log('Bot is ready!')
+    console.log('\n-[ Client Ready ]-')
+    console.log(`(!): Logged as a ${$.client.user.username}#${$.client.user.discriminator}`)
+    console.log(`(!): Developed with ❤️\ \ by clqu.`)
+    console.log(`(!): Total ${$.commands.length} commands loaded.`)
     try {
         $.client.user.setPresence({
             activities: [
@@ -29,13 +32,9 @@ $.client.on('ready', () => {
     };
 });
 
-$.setCommand({
-    name: "help",
-    description: "Help",
-    admin: false,
-    run: async (client, interaction) => {
-        return interaction.reply('help')
-    }
+console.log('-[ Commands Loading ]-')
+$.commandLoader('./test/commands/', '.js', (cmd) => {
+    console.log(`(!): ${cmd} command loaded.`)
 });
 
 $.init();

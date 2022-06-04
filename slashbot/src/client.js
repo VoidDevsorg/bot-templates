@@ -1,9 +1,11 @@
 const { Client, Intents, Message, MessageEmbed } = require("discord.js");
-const moduleConfig = require('../module.config.json');
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
+const glob = require('glob');
+const fromDir = require('./fromDir');
 
 module.exports.client = this.client;
+module.exports.commands = this.commands;
 
 module.exports = class ClquClient {
     /**
@@ -15,7 +17,7 @@ module.exports = class ClquClient {
     constructor({ token, intents }) {
         if (!token || typeof token !== "string")
             throw new Error(`${moduleConfig.prefix}: [TOKEN_INVALID]: An invalid token was provided.`);
-        if (!intents || typeof intents !== "array")
+        if (!intents || !Array.isArray(intents))
             throw new Error(`${moduleConfig.prefix}: [INTENTS_INVALID]: An invalid intents was provided.`);
         this.token = token;
         this.commands = [];
@@ -27,6 +29,7 @@ module.exports = class ClquClient {
     }
 
     init() {
+
         //------------------------------------------------------------------------------------//
 
         const rest = new REST({ version: "9" }).setToken(this.token);
@@ -36,8 +39,7 @@ module.exports = class ClquClient {
                     await rest.put(Routes.applicationCommands(this.client.user.id), {
                         body: await this.commands,
                     });
-                    console.log(`${moduleConfig.prefix}: Total ${this?.commands?.length || 0} commands loaded.`)
-                } catch { };
+                } catch {};
             })();
         });
 
@@ -51,13 +53,22 @@ module.exports = class ClquClient {
         
         //------------------------------------------------------------------------------------//
 
-        this.client.on('ready', () => {
-            console.log(`${moduleConfig.prefix}: Logged as a ${this.client.user.username}#${this.client.user.discriminator}`)
-            console.log(`${moduleConfig.prefix}: Developed with ❤️\ \ by clqu.`)
-        })
         this.client.login(this.token);
     }
 
+    commandLoader(startPath, extension, callback) {
+        if(startPath.startsWith('../'))
+            throw new Error(`${moduleConfig.prefix}: [PATH_INVALID]: Start path should start with ./ instead of ../`);
+
+        fromDir(startPath, extension, (files) => {
+            files.forEach((file) => {
+                const $ = require(process.cwd()+'/'+file.split('./')[1]);
+                callback($.name);
+                this.setCommand($)
+            })
+        });
+    }
+    
     setCommand({ name, description, run, options }) {
         if (/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(name))
             throw new Error(`${moduleConfig.prefix}: Command name is invalid. (${name})`);
@@ -68,4 +79,5 @@ module.exports = class ClquClient {
             options: options ?? []
         });
     }
+    
 }

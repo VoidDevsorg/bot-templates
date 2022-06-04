@@ -25,7 +25,10 @@ const $ = new Client({
 });
 
 $.client.on('ready', () => {
-    console.log('Bot is ready!')
+    console.log('\n-[ Client Ready ]-')
+    console.log(`(!): Logged as a ${$.client.user.username}#${$.client.user.discriminator}`)
+    console.log(`(!): Developed with ❤️\ \ by clqu.`)
+    console.log(`(!): Total ${$.commands.length} commands loaded.`)
     try {
         $.client.user.setPresence({
             activities: [
@@ -41,6 +44,33 @@ $.client.on('ready', () => {
     };
 });
 
+$.init();
+```
+
+### Command Loader
+```js
+// path, extension, callback
+$.commandLoader('./test/commands/', '.js', (cmd) => {
+    console.log(`(!): ${cmd} command loaded.`)
+});
+```
+
+### Custom Loader
+```js
+const { fromDir } = require('@voiddevs.org/slashbot');
+
+fromDir('./test/commands/', '.js', (files) => {
+    files.forEach((file) => {
+        const cmd = require(process.cwd()+'/'+file.split('./')[1]);
+        console.log(`(!): ${cmd.name} command loaded.`)
+        $.setCommand(cmd)
+    })
+});
+
+```
+
+### Set Command
+```js
 $.setCommand({
     name: "help",
     description: "Help",
@@ -49,10 +79,7 @@ $.setCommand({
         return interaction.reply('help')
     }
 });
-
-$.init();
 ```
-
 
 ---
 <h6 align="center">Developed with ❤️ by Void Development</h6>
