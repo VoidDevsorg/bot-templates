@@ -84,7 +84,7 @@ SOFTWARE.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@VoidDevs](https://twitter.com/voiddevs) - root@voiddevs.org
+[@VoidDevs](https://twitter.com/voiddevs) - root@voiddevs.org
 
 Project Link: [https://github.com/VoidDevsOrg/bot-templates](https://github.com/VoidDevsOrg/bot-templates)
 
